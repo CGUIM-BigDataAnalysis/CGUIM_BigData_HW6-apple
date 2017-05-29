@@ -1,0 +1,10 @@
+"0","#這是R Code Chunk"
+"0","library(readr)"
+"2","Warning message:
+"
+"2","In strsplit(code, ""\n"", fixed = TRUE) :"
+"2","
+ "
+"2"," input string 1 is invalid in this locale
+"
+"0","Age_County_Gender_061 <- read.csv(""C:/Users/user/Downloads/Age_County_Gender_061.csv"",fileEncoding = ""big5"")"

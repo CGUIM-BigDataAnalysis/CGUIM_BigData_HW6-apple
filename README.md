@@ -34,6 +34,13 @@
 
 ``` r
 #這是R Code Chunk
+library(readr)
+```
+
+    ## Warning: package 'readr' was built under R version 3.3.3
+
+``` r
+Age_County_Gender_061 <- read.csv("C:/Users/user/Downloads/Age_County_Gender_061.csv",fileEncoding = "big5")
 ```
 
 資料處理與清洗
@@ -45,7 +52,42 @@
 
 ``` r
 #這是R Code Chunk
+library(dplyr)
 ```
+
+    ## Warning: package 'dplyr' was built under R version 3.3.3
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+``` r
+group_by(Age_County_Gender_061,.dots=縣市) %>%
+  summarise(病例=sum(確定病例數)) %>%
+  arrange(desc(病例))
+```
+
+    ## # A tibble: 22 × 2
+    ##     .dots  病例
+    ##    <fctr> <int>
+    ## 1  高雄市 40796
+    ## 2  台南市 26406
+    ## 3  屏東縣  1762
+    ## 4  台北市   701
+    ## 5  新北市   633
+    ## 6  台中市   449
+    ## 7  桃園市   438
+    ## 8  彰化縣   159
+    ## 9  澎湖縣   137
+    ## 10 新竹縣   114
+    ## # ... with 12 more rows
 
 探索式資料分析
 --------------

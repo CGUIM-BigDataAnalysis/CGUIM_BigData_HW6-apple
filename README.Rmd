@@ -29,6 +29,8 @@ output: github_document
 載入使用資料們
 ```{r}
 #這是R Code Chunk
+library(readr)
+Age_County_Gender_061 <- read.csv("C:/Users/user/Downloads/Age_County_Gender_061.csv",fileEncoding = "big5")
 ```
 
 ## 資料處理與清洗
@@ -37,12 +39,17 @@ output: github_document
 處理資料
 ```{r}
 #這是R Code Chunk
+library(dplyr)
+group_by(Age_County_Gender_061,.dots=縣市) %>%
+  summarise(病例=sum(確定病例數)) %>%
+  arrange(desc(病例))
 ```
 
 ## 探索式資料分析
 圖文並茂圖文並茂
 ```{r}
 #這是R Code Chunk
+
 ```
 
 ## 期末專題分析規劃
