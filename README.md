@@ -87,18 +87,11 @@ group_by(Age_County_Gender_061,.dots=縣市) %>%
 
 ``` r
 #install.packages("ggplot2")
-library(ggplot2)
+#library(ggplot2)
+#ggplot()+geom_bar(data=Age_County_Gender_061NA,
+#aes(x=發病月份,y=發病年份),
+#                 stat = "identity") 
 ```
-
-    ## Warning: package 'ggplot2' was built under R version 3.3.3
-
-``` r
-ggplot()+geom_bar(data=Age_County_Gender_061NA,
-                  aes(x=發病月份,y=發病年份),
-                  stat = "identity") 
-```
-
-![](README_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
 期末專題分析規劃
 ----------------
