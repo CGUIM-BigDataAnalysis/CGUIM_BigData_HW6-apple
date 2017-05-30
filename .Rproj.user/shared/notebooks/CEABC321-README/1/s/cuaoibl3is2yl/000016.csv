@@ -1,0 +1,5 @@
+"0","#install.packages(""ggplot2"")"
+"0","library(ggplot2)"
+"0","ggplot()+geom_bar(data=Age_County_Gender_061NA,"
+"0","                  aes(x=發病月份,y=發病年份),"
+"0","                  stat = ""identity"") "

@@ -1,0 +1,9 @@
+"0","#這是R Code Chunk"
+"0","Age_County_Gender_061NA<-Age_County_Gender_061[complete.cases(Age_County_Gender_061),]"
+"2","Warning message:
+"
+"2","In strsplit(code, ""\n"", fixed = TRUE) :"
+"2","
+ "
+"2"," input string 1 is invalid in this locale
+"
