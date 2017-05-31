@@ -1,0 +1,13 @@
+"0","#這是R Code Chunk"
+"0","library(dplyr)"
+"2","Warning message:
+"
+"2","In strsplit(code, ""\n"", fixed = TRUE) :"
+"2","
+ "
+"2"," input string 1 is invalid in this locale
+"
+"0","library(reshape2)"
+"0","group_by(Age_County_Gender_061F,.dots=縣市) %>%"
+"0","  summarise(病例=sum(確定病例數)) %>%"
+"0","  arrange(desc(病例))"

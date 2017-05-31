@@ -1,0 +1,9 @@
+"0","a<-full_join(Age_County_Gender_061MR,Age_County_Gender_061FR,by=c(""發病年份"",""發病月份"",""縣市"",""鄉鎮"",""年齡層""))
+"
+"2","Warning message:
+"
+"2","In strsplit(code, ""\n"", fixed = TRUE) :"
+"2","
+ "
+"2"," input string 1 is invalid in this locale
+"

@@ -1,0 +1,3 @@
+"0","group_by(a,.dots=縣市) %>%"
+"0","  summarise(女生病例=sum(確定病例數.x,na.rm=T),男生病例=sum(確定病例數.y,na.rm=T)) %>%"
+"0","  arrange(desc(女生病例),desc(男生病例))"

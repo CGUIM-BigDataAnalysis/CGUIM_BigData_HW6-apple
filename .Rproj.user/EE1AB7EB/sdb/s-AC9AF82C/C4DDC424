@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1496225410581.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "C4DDC424",
+    "lastKnownWriteTime" : 13229817834242158,
+    "last_content_update" : 1496225410581,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "1CEC2AE",
+        "caption" : "Age_County_Gender_061F",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=Age_County_Gender_061F&cache_key=1CEC2AE",
+        "displayedObservations" : 8041,
+        "environment" : "",
+        "object" : "Age_County_Gender_061F",
+        "preview" : 0,
+        "totalObservations" : 8041,
+        "variables" : 9
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
