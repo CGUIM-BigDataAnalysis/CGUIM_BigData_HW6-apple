@@ -121,20 +121,11 @@ $(document).ready(function () {
 
 <div id="head" class="section level2">
 <h2>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</h2>
-<p>title: 林昱珊 許凱晶 台灣地區登革熱分析 output: github_document —</p>
+<p>title: 台灣各地區登革熱分析 output: github_document —</p>
 </div>
-<div id="-" class="section level2">
-<h2>作業說明 （繳交時請直接刪除這個章節）</h2>
-<p>作業目的：期末專題暖身</p>
-<p>依下列指示，完成期末分析專題作業規劃：</p>
-<ul>
-<li>訂出分析問題，並將R Markdown的一級標題(第一行的title:)中的“長庚大學 大數據分析方法 作業六”取代為期末專題的分析問題，並在分析議題背景前加上組員姓名 (<code>10pt</code>)</li>
-<li>分析議題背景 (<code>10pt</code>) 與動機 (<code>10pt</code>)</li>
-<li>資料說明 (<code>10pt</code>) 與 載入 (<code>10pt</code>)</li>
-<li>資料處理與清洗 (<code>10pt</code>) 說明 (<code>10pt</code>)</li>
-<li>對資料們進行探索式資料分析，圖文並茂佳!(<code>20pt</code>)</li>
-<li>期末專題分析規劃與假設 (<code>10pt</code>)</li>
-</ul>
+<div class="section level2">
+<h2>組員姓名</h2>
+<p>林昱珊 許凱晶</p>
 </div>
 <div class="section level2">
 <h2>分析議題背景</h2>
@@ -150,12 +141,13 @@ $(document).ready(function () {
 <pre class="r"><code>#這是R Code Chunk
 library(readr)</code></pre>
 <pre><code>## Warning: package 'readr' was built under R version 3.3.3</code></pre>
-<pre class="r"><code>Age_County_Gender_061 &lt;- read.csv(&quot;C:/Users/user/Downloads/Age_County_Gender_061.csv&quot;,fileEncoding = &quot;big5&quot;)
-#Age_County_Gender_061 &lt;- read.csv(&quot;~/GitHub/b0344139_hw6/Age_County_Gender_061.csv&quot;,fileEncoding = &quot;big5&quot;)</code></pre>
+<pre class="r"><code>#Age_County_Gender_061 &lt;- read.csv(&quot;C:/Users/user/Downloads/Age_County_Gender_061.csv&quot;,fileEncoding = &quot;big5&quot;)
+Age_County_Gender_061 &lt;- read.csv(&quot;~/GitHub/b0344139_hw6/Age_County_Gender_061.csv&quot;,fileEncoding = &quot;big5&quot;)</code></pre>
 </div>
 <div class="section level2">
 <h2>資料處理與清洗</h2>
-<p>1.檢查資料裡是否有空值 2.把男生女生個別篩選出來 處理資料</p>
+<p>1.檢查資料裡是否有空值 2.把男生女生個別篩選出來</p>
+<p>處理資料</p>
 <pre class="r"><code>#這是R Code Chunk
 library(dplyr)</code></pre>
 <pre><code>## Warning: package 'dplyr' was built under R version 3.3.3</code></pre>
@@ -174,7 +166,3160 @@ Age_County_Gender_061FR&lt;-rename(Age_County_Gender_061FR,女生=性別)
 Age_County_Gender_061M&lt;-Age_County_Gender_061[grepl(&quot;M&quot;,Age_County_Gender_061$性別),]
 Age_County_Gender_061MR&lt;-select(Age_County_Gender_061M,發病年份:確定病例數,-是否為境外移入)
 Age_County_Gender_061MR&lt;-rename(Age_County_Gender_061MR,男生=性別)
-a&lt;-full_join(Age_County_Gender_061FR,Age_County_Gender_061MR,by=c(&quot;發病年份&quot;,&quot;發病月份&quot;,&quot;縣市&quot;,&quot;鄉鎮&quot;,&quot;年齡層&quot;))</code></pre>
+a&lt;-full_join(Age_County_Gender_061FR,Age_County_Gender_061MR,by=c(&quot;發病年份&quot;,&quot;發病月份&quot;,&quot;縣市&quot;,&quot;鄉鎮&quot;,&quot;年齡層&quot;))
+
+knitr::kable(head(Age_County_Gender_061FR,100))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">發病年份</th>
+<th align="center">發病月份</th>
+<th align="left">縣市</th>
+<th align="left">鄉鎮</th>
+<th align="left">女生</th>
+<th align="left">年齡層</th>
+<th align="center">確定病例數</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2</td>
+<td align="center">2003</td>
+<td align="center">12</td>
+<td align="left">新北市</td>
+<td align="left">三重區</td>
+<td align="left">F</td>
+<td align="left">40-44</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td align="center">2004</td>
+<td align="center">11</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">60-64</td>
+<td align="center">4</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td align="center">2004</td>
+<td align="center">2</td>
+<td align="left">基隆市</td>
+<td align="left">信義區</td>
+<td align="left">F</td>
+<td align="left">20-24</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td align="center">2004</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">鳳山區</td>
+<td align="left">F</td>
+<td align="left">15-19</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td align="center">2004</td>
+<td align="center">9</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td align="center">2004</td>
+<td align="center">9</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">50-54</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td align="center">2004</td>
+<td align="center">9</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">65-69</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td align="center">2005</td>
+<td align="center">12</td>
+<td align="left">台北市</td>
+<td align="left">信義區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>18</td>
+<td align="center">2006</td>
+<td align="center">10</td>
+<td align="left">高雄市</td>
+<td align="left">前鎮區</td>
+<td align="left">F</td>
+<td align="left">50-54</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td>19</td>
+<td align="center">2006</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">F</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>23</td>
+<td align="center">2006</td>
+<td align="center">7</td>
+<td align="left">台北市</td>
+<td align="left">大安區</td>
+<td align="left">F</td>
+<td align="left">55-59</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>25</td>
+<td align="center">2006</td>
+<td align="center">8</td>
+<td align="left">桃園市</td>
+<td align="left">八德區</td>
+<td align="left">F</td>
+<td align="left">40-44</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>26</td>
+<td align="center">2006</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">前鎮區</td>
+<td align="left">F</td>
+<td align="left">60-64</td>
+<td align="center">5</td>
+</tr>
+<tr class="even">
+<td>27</td>
+<td align="center">2006</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">新興區</td>
+<td align="left">F</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>28</td>
+<td align="center">2006</td>
+<td align="center">9</td>
+<td align="left">高雄市</td>
+<td align="left">苓雅區</td>
+<td align="left">F</td>
+<td align="left">70+</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td>29</td>
+<td align="center">2006</td>
+<td align="center">9</td>
+<td align="left">高雄市</td>
+<td align="left">鳥松區</td>
+<td align="left">F</td>
+<td align="left">60-64</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>30</td>
+<td align="center">2007</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">南區</td>
+<td align="left">F</td>
+<td align="left">10-14</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>31</td>
+<td align="center">2007</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">關廟區</td>
+<td align="left">F</td>
+<td align="left">65-69</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td>34</td>
+<td align="center">2007</td>
+<td align="center">11</td>
+<td align="left">台南市</td>
+<td align="left">安南區</td>
+<td align="left">F</td>
+<td align="left">65-69</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>40</td>
+<td align="center">2007</td>
+<td align="center">7</td>
+<td align="left">台南市</td>
+<td align="left">永康區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>42</td>
+<td align="center">2007</td>
+<td align="center">7</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">F</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>47</td>
+<td align="center">2007</td>
+<td align="center">9</td>
+<td align="left">台南市</td>
+<td align="left">東區</td>
+<td align="left">F</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>54</td>
+<td align="center">2008</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">苓雅區</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>55</td>
+<td align="center">2008</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">鼓山區</td>
+<td align="left">F</td>
+<td align="left">15-19</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>56</td>
+<td align="center">2008</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">鼓山區</td>
+<td align="left">F</td>
+<td align="left">70+</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>60</td>
+<td align="center">2009</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">永康區</td>
+<td align="left">F</td>
+<td align="left">55-59</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>65</td>
+<td align="center">2009</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">F</td>
+<td align="left">20-24</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>67</td>
+<td align="center">2009</td>
+<td align="center">12</td>
+<td align="left">台北市</td>
+<td align="left">信義區</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>72</td>
+<td align="center">2009</td>
+<td align="center">3</td>
+<td align="left">台北市</td>
+<td align="left">中正區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>73</td>
+<td align="center">2009</td>
+<td align="center">4</td>
+<td align="left">嘉義縣</td>
+<td align="left">新港鄉</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>76</td>
+<td align="center">2009</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">小港區</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>77</td>
+<td align="center">2009</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">小港區</td>
+<td align="left">F</td>
+<td align="left">55-59</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td>80</td>
+<td align="center">2010</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">中西區</td>
+<td align="left">F</td>
+<td align="left">15-19</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>81</td>
+<td align="center">2010</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">東區</td>
+<td align="left">F</td>
+<td align="left">40-44</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>82</td>
+<td align="center">2010</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">關廟區</td>
+<td align="left">F</td>
+<td align="left">55-59</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>83</td>
+<td align="center">2010</td>
+<td align="center">10</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">F</td>
+<td align="left">5-9</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td>86</td>
+<td align="center">2010</td>
+<td align="center">10</td>
+<td align="left">高雄市</td>
+<td align="left">苓雅區</td>
+<td align="left">F</td>
+<td align="left">60-64</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td>88</td>
+<td align="center">2010</td>
+<td align="center">11</td>
+<td align="left">台南市</td>
+<td align="left">安南區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>89</td>
+<td align="center">2010</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">F</td>
+<td align="left">15-19</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>90</td>
+<td align="center">2010</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">左營區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>91</td>
+<td align="center">2010</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">前鎮區</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>92</td>
+<td align="center">2010</td>
+<td align="center">12</td>
+<td align="left">高雄市</td>
+<td align="left">前鎮區</td>
+<td align="left">F</td>
+<td align="left">70+</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>93</td>
+<td align="center">2010</td>
+<td align="center">12</td>
+<td align="left">高雄市</td>
+<td align="left">苓雅區</td>
+<td align="left">F</td>
+<td align="left">50-54</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td>96</td>
+<td align="center">2010</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">鼓山區</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td>98</td>
+<td align="center">2010</td>
+<td align="center">9</td>
+<td align="left">台中市</td>
+<td align="left">潭子區</td>
+<td align="left">F</td>
+<td align="left">40-44</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>99</td>
+<td align="center">2010</td>
+<td align="center">9</td>
+<td align="left">高雄市</td>
+<td align="left">新興區</td>
+<td align="left">F</td>
+<td align="left">65-69</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>102</td>
+<td align="center">2004</td>
+<td align="center">11</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td>107</td>
+<td align="center">2004</td>
+<td align="center">8</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>109</td>
+<td align="center">2005</td>
+<td align="center">10</td>
+<td align="left">台北市</td>
+<td align="left">北投區</td>
+<td align="left">F</td>
+<td align="left">15-19</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>111</td>
+<td align="center">2005</td>
+<td align="center">7</td>
+<td align="left">苗栗縣</td>
+<td align="left">南庄鄉</td>
+<td align="left">F</td>
+<td align="left">5-9</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>112</td>
+<td align="center">2005</td>
+<td align="center">7</td>
+<td align="left">桃園市</td>
+<td align="left">中壢區</td>
+<td align="left">F</td>
+<td align="left">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>113</td>
+<td align="center">2006</td>
+<td align="center">10</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">F</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>116</td>
+<td align="center">2006</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">小港區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td>117</td>
+<td align="center">2006</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">前鎮區</td>
+<td align="left">F</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>118</td>
+<td align="center">2006</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">鳳山區</td>
+<td align="left">F</td>
+<td align="left">55-59</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td>122</td>
+<td align="center">2006</td>
+<td align="center">12</td>
+<td align="left">新北市</td>
+<td align="left">萬里區</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>123</td>
+<td align="center">2006</td>
+<td align="center">7</td>
+<td align="left">高雄市</td>
+<td align="left">新興區</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>124</td>
+<td align="center">2006</td>
+<td align="center">8</td>
+<td align="left">桃園市</td>
+<td align="left">楊梅區</td>
+<td align="left">F</td>
+<td align="left">20-24</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>125</td>
+<td align="center">2006</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">前鎮區</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>127</td>
+<td align="center">2006</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">鳳山區</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td>128</td>
+<td align="center">2006</td>
+<td align="center">9</td>
+<td align="left">桃園市</td>
+<td align="left">八德區</td>
+<td align="left">F</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>132</td>
+<td align="center">2006</td>
+<td align="center">9</td>
+<td align="left">高雄市</td>
+<td align="left">楠梓區</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>133</td>
+<td align="center">2007</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">北區</td>
+<td align="left">F</td>
+<td align="left">60-64</td>
+<td align="center">11</td>
+</tr>
+<tr class="even">
+<td>134</td>
+<td align="center">2007</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">永康區</td>
+<td align="left">F</td>
+<td align="left">20-24</td>
+<td align="center">4</td>
+</tr>
+<tr class="odd">
+<td>140</td>
+<td align="center">2007</td>
+<td align="center">12</td>
+<td align="left">台北市</td>
+<td align="left">文山區</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>141</td>
+<td align="center">2007</td>
+<td align="center">12</td>
+<td align="left">台南市</td>
+<td align="left">北區</td>
+<td align="left">F</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>142</td>
+<td align="center">2007</td>
+<td align="center">12</td>
+<td align="left">台南市</td>
+<td align="left">安平區</td>
+<td align="left">F</td>
+<td align="left">40-44</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>143</td>
+<td align="center">2007</td>
+<td align="center">12</td>
+<td align="left">台南市</td>
+<td align="left">東區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td>145</td>
+<td align="center">2007</td>
+<td align="center">4</td>
+<td align="left">台南市</td>
+<td align="left">安定區</td>
+<td align="left">F</td>
+<td align="left">40-44</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>147</td>
+<td align="center">2007</td>
+<td align="center">7</td>
+<td align="left">台南市</td>
+<td align="left">東區</td>
+<td align="left">F</td>
+<td align="left">15-19</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>148</td>
+<td align="center">2007</td>
+<td align="center">7</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">F</td>
+<td align="left">65-69</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>151</td>
+<td align="center">2007</td>
+<td align="center">9</td>
+<td align="left">台南市</td>
+<td align="left">安平區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>152</td>
+<td align="center">2007</td>
+<td align="center">9</td>
+<td align="left">新北市</td>
+<td align="left">樹林區</td>
+<td align="left">F</td>
+<td align="left">20-24</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>153</td>
+<td align="center">2008</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">東區</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>157</td>
+<td align="center">2008</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">鳳山區</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>159</td>
+<td align="center">2008</td>
+<td align="center">12</td>
+<td align="left">台北市</td>
+<td align="left">中山區</td>
+<td align="left">F</td>
+<td align="left">70+</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>160</td>
+<td align="center">2008</td>
+<td align="center">2</td>
+<td align="left">台中市</td>
+<td align="left">豐原區</td>
+<td align="left">F</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>161</td>
+<td align="center">2008</td>
+<td align="center">4</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">F</td>
+<td align="left">55-59</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>166</td>
+<td align="center">2008</td>
+<td align="center">8</td>
+<td align="left">台北市</td>
+<td align="left">士林區</td>
+<td align="left">F</td>
+<td align="left">55-59</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td>167</td>
+<td align="center">2008</td>
+<td align="center">8</td>
+<td align="left">新北市</td>
+<td align="left">深坑區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>169</td>
+<td align="center">2009</td>
+<td align="center">10</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">55-59</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td>170</td>
+<td align="center">2009</td>
+<td align="center">10</td>
+<td align="left">高雄市</td>
+<td align="left">小港區</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>174</td>
+<td align="center">2009</td>
+<td align="center">12</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td>175</td>
+<td align="center">2009</td>
+<td align="center">12</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">F</td>
+<td align="left">20-24</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>176</td>
+<td align="center">2009</td>
+<td align="center">2</td>
+<td align="left">桃園市</td>
+<td align="left">中壢區</td>
+<td align="left">F</td>
+<td align="left">65-69</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>177</td>
+<td align="center">2009</td>
+<td align="center">4</td>
+<td align="left">屏東縣</td>
+<td align="left">竹田鄉</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>180</td>
+<td align="center">2010</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">北區</td>
+<td align="left">F</td>
+<td align="left">65-69</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td>181</td>
+<td align="center">2010</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">東區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td>182</td>
+<td align="center">2010</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">東區</td>
+<td align="left">F</td>
+<td align="left">60-64</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>186</td>
+<td align="center">2010</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">鼓山區</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td>187</td>
+<td align="center">2010</td>
+<td align="center">11</td>
+<td align="left">新北市</td>
+<td align="left">樹林區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>188</td>
+<td align="center">2010</td>
+<td align="center">12</td>
+<td align="left">台中市</td>
+<td align="left">沙鹿區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>192</td>
+<td align="center">2010</td>
+<td align="center">12</td>
+<td align="left">高雄市</td>
+<td align="left">苓雅區</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>194</td>
+<td align="center">2010</td>
+<td align="center">6</td>
+<td align="left">彰化縣</td>
+<td align="left">二林鎮</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>204</td>
+<td align="center">2003</td>
+<td align="center">9</td>
+<td align="left">新北市</td>
+<td align="left">中和區</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>205</td>
+<td align="center">2004</td>
+<td align="center">10</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">60-64</td>
+<td align="center">7</td>
+</tr>
+<tr class="odd">
+<td>207</td>
+<td align="center">2004</td>
+<td align="center">11</td>
+<td align="left">台北市</td>
+<td align="left">大同區</td>
+<td align="left">F</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>208</td>
+<td align="center">2004</td>
+<td align="center">11</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">40-44</td>
+<td align="center">4</td>
+</tr>
+<tr class="odd">
+<td>210</td>
+<td align="center">2004</td>
+<td align="center">7</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>212</td>
+<td align="center">2004</td>
+<td align="center">8</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">40-44</td>
+<td align="center">2</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>knitr::kable(head(Age_County_Gender_061MR,100))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">發病年份</th>
+<th align="center">發病月份</th>
+<th align="left">縣市</th>
+<th align="left">鄉鎮</th>
+<th align="left">男生</th>
+<th align="left">年齡層</th>
+<th align="center">確定病例數</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td align="center">2003</td>
+<td align="center">10</td>
+<td align="left">高雄市</td>
+<td align="left">楠梓區</td>
+<td align="left">M</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td align="center">2003</td>
+<td align="center">7</td>
+<td align="left">台南市</td>
+<td align="left">中西區</td>
+<td align="left">M</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td align="center">2004</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">苓雅區</td>
+<td align="left">M</td>
+<td align="left">15-19</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td align="center">2004</td>
+<td align="center">4</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">M</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>12</td>
+<td align="center">2004</td>
+<td align="center">9</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">M</td>
+<td align="left">40-44</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td>13</td>
+<td align="center">2004</td>
+<td align="center">9</td>
+<td align="left">新北市</td>
+<td align="left">中和區</td>
+<td align="left">M</td>
+<td align="left">70+</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>14</td>
+<td align="center">2005</td>
+<td align="center">10</td>
+<td align="left">屏東縣</td>
+<td align="left">里港鄉</td>
+<td align="left">M</td>
+<td align="left">40-44</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>16</td>
+<td align="center">2005</td>
+<td align="center">5</td>
+<td align="left">桃園市</td>
+<td align="left">大園區</td>
+<td align="left">M</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>17</td>
+<td align="center">2006</td>
+<td align="center">10</td>
+<td align="left">高雄市</td>
+<td align="left">林園區</td>
+<td align="left">M</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td align="center">2006</td>
+<td align="center">11</td>
+<td align="left">新北市</td>
+<td align="left">三重區</td>
+<td align="left">M</td>
+<td align="left">40-44</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>21</td>
+<td align="center">2006</td>
+<td align="center">12</td>
+<td align="left">屏東縣</td>
+<td align="left">恆春鎮</td>
+<td align="left">M</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>22</td>
+<td align="center">2006</td>
+<td align="center">4</td>
+<td align="left">高雄市</td>
+<td align="left">左營區</td>
+<td align="left">M</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>24</td>
+<td align="center">2006</td>
+<td align="center">7</td>
+<td align="left">高雄市</td>
+<td align="left">前鎮區</td>
+<td align="left">M</td>
+<td align="left">35-39</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td>32</td>
+<td align="center">2007</td>
+<td align="center">11</td>
+<td align="left">台南市</td>
+<td align="left">永康區</td>
+<td align="left">M</td>
+<td align="left">10-14</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td>33</td>
+<td align="center">2007</td>
+<td align="center">11</td>
+<td align="left">台南市</td>
+<td align="left">永康區</td>
+<td align="left">M</td>
+<td align="left">55-59</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>35</td>
+<td align="center">2007</td>
+<td align="center">11</td>
+<td align="left">台南市</td>
+<td align="left">東區</td>
+<td align="left">M</td>
+<td align="left">70+</td>
+<td align="center">5</td>
+</tr>
+<tr class="odd">
+<td>36</td>
+<td align="center">2007</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">岡山區</td>
+<td align="left">M</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>37</td>
+<td align="center">2007</td>
+<td align="center">6</td>
+<td align="left">台南市</td>
+<td align="left">北區</td>
+<td align="left">M</td>
+<td align="left">10-14</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>38</td>
+<td align="center">2007</td>
+<td align="center">6</td>
+<td align="left">台南市</td>
+<td align="left">安平區</td>
+<td align="left">M</td>
+<td align="left">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>39</td>
+<td align="center">2007</td>
+<td align="center">7</td>
+<td align="left">台南市</td>
+<td align="left">大內區</td>
+<td align="left">M</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>41</td>
+<td align="center">2007</td>
+<td align="center">7</td>
+<td align="left">台南市</td>
+<td align="left">南區</td>
+<td align="left">M</td>
+<td align="left">55-59</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>43</td>
+<td align="center">2007</td>
+<td align="center">7</td>
+<td align="left">高雄市</td>
+<td align="left">仁武區</td>
+<td align="left">M</td>
+<td align="left">40-44</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>44</td>
+<td align="center">2007</td>
+<td align="center">8</td>
+<td align="left">台南市</td>
+<td align="left">關廟區</td>
+<td align="left">M</td>
+<td align="left">70+</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>45</td>
+<td align="center">2007</td>
+<td align="center">8</td>
+<td align="left">新北市</td>
+<td align="left">新莊區</td>
+<td align="left">M</td>
+<td align="left">40-44</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>46</td>
+<td align="center">2007</td>
+<td align="center">9</td>
+<td align="left">台南市</td>
+<td align="left">中西區</td>
+<td align="left">M</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>48</td>
+<td align="center">2007</td>
+<td align="center">9</td>
+<td align="left">台南市</td>
+<td align="left">東區</td>
+<td align="left">M</td>
+<td align="left">40-44</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td>49</td>
+<td align="center">2008</td>
+<td align="center">1</td>
+<td align="left">台南市</td>
+<td align="left">南區</td>
+<td align="left">M</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>50</td>
+<td align="center">2008</td>
+<td align="center">1</td>
+<td align="left">屏東縣</td>
+<td align="left">新園鄉</td>
+<td align="left">M</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>51</td>
+<td align="center">2008</td>
+<td align="center">10</td>
+<td align="left">台北市</td>
+<td align="left">士林區</td>
+<td align="left">M</td>
+<td align="left">15-19</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>52</td>
+<td align="center">2008</td>
+<td align="center">10</td>
+<td align="left">高雄市</td>
+<td align="left">苓雅區</td>
+<td align="left">M</td>
+<td align="left">15-19</td>
+<td align="center">3</td>
+</tr>
+<tr class="odd">
+<td>53</td>
+<td align="center">2008</td>
+<td align="center">11</td>
+<td align="left">桃園市</td>
+<td align="left">大園區</td>
+<td align="left">M</td>
+<td align="left">55-59</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>57</td>
+<td align="center">2008</td>
+<td align="center">7</td>
+<td align="left">雲林縣</td>
+<td align="left">斗六市</td>
+<td align="left">M</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>58</td>
+<td align="center">2008</td>
+<td align="center">8</td>
+<td align="left">新北市</td>
+<td align="left">中和區</td>
+<td align="left">M</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>59</td>
+<td align="center">2008</td>
+<td align="center">9</td>
+<td align="left">高雄市</td>
+<td align="left">鳳山區</td>
+<td align="left">M</td>
+<td align="left">55-59</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>61</td>
+<td align="center">2009</td>
+<td align="center">10</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">M</td>
+<td align="left">60-64</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>62</td>
+<td align="center">2009</td>
+<td align="center">10</td>
+<td align="left">高雄市</td>
+<td align="left">前鎮區</td>
+<td align="left">M</td>
+<td align="left">40-44</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td>63</td>
+<td align="center">2009</td>
+<td align="center">10</td>
+<td align="left">高雄市</td>
+<td align="left">鼓山區</td>
+<td align="left">M</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>64</td>
+<td align="center">2009</td>
+<td align="center">10</td>
+<td align="left">高雄市</td>
+<td align="left">鳳山區</td>
+<td align="left">M</td>
+<td align="left">60-64</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>66</td>
+<td align="center">2009</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">旗津區</td>
+<td align="left">M</td>
+<td align="left">65-69</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td>68</td>
+<td align="center">2009</td>
+<td align="center">12</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">M</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>69</td>
+<td align="center">2009</td>
+<td align="center">12</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">M</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>70</td>
+<td align="center">2009</td>
+<td align="center">12</td>
+<td align="left">新北市</td>
+<td align="left">三重區</td>
+<td align="left">M</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>71</td>
+<td align="center">2009</td>
+<td align="center">2</td>
+<td align="left">宜蘭縣</td>
+<td align="left">員山鄉</td>
+<td align="left">M</td>
+<td align="left">10-14</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>74</td>
+<td align="center">2009</td>
+<td align="center">7</td>
+<td align="left">台北市</td>
+<td align="left">萬華區</td>
+<td align="left">M</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>75</td>
+<td align="center">2009</td>
+<td align="center">7</td>
+<td align="left">苗栗縣</td>
+<td align="left">三義鄉</td>
+<td align="left">M</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>78</td>
+<td align="center">2009</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">小港區</td>
+<td align="left">M</td>
+<td align="left">60-64</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td>79</td>
+<td align="center">2009</td>
+<td align="center">9</td>
+<td align="left">高雄市</td>
+<td align="left">大寮區</td>
+<td align="left">M</td>
+<td align="left">15-19</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>84</td>
+<td align="center">2010</td>
+<td align="center">10</td>
+<td align="left">高雄市</td>
+<td align="left">大社區</td>
+<td align="left">M</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>85</td>
+<td align="center">2010</td>
+<td align="center">10</td>
+<td align="left">高雄市</td>
+<td align="left">阿蓮區</td>
+<td align="left">M</td>
+<td align="left">55-59</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>87</td>
+<td align="center">2010</td>
+<td align="center">11</td>
+<td align="left">台北市</td>
+<td align="left">松山區</td>
+<td align="left">M</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>94</td>
+<td align="center">2010</td>
+<td align="center">7</td>
+<td align="left">雲林縣</td>
+<td align="left">斗六市</td>
+<td align="left">M</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>95</td>
+<td align="center">2010</td>
+<td align="center">8</td>
+<td align="left">台南市</td>
+<td align="left">關廟區</td>
+<td align="left">M</td>
+<td align="left">60-64</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>97</td>
+<td align="center">2010</td>
+<td align="center">8</td>
+<td align="left">新北市</td>
+<td align="left">新莊區</td>
+<td align="left">M</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>100</td>
+<td align="center">2003</td>
+<td align="center">6</td>
+<td align="left">宜蘭縣</td>
+<td align="left">五結鄉</td>
+<td align="left">M</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>101</td>
+<td align="center">2004</td>
+<td align="center">10</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">M</td>
+<td align="left">30-34</td>
+<td align="center">8</td>
+</tr>
+<tr class="even">
+<td>103</td>
+<td align="center">2004</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">梓官區</td>
+<td align="left">M</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>104</td>
+<td align="center">2004</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">鼓山區</td>
+<td align="left">M</td>
+<td align="left">20-24</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>105</td>
+<td align="center">2004</td>
+<td align="center">12</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">M</td>
+<td align="left">15-19</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>106</td>
+<td align="center">2004</td>
+<td align="center">7</td>
+<td align="left">台北市</td>
+<td align="left">北投區</td>
+<td align="left">M</td>
+<td align="left">60-64</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>108</td>
+<td align="center">2004</td>
+<td align="center">9</td>
+<td align="left">雲林縣</td>
+<td align="left">口湖鄉</td>
+<td align="left">M</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>110</td>
+<td align="center">2005</td>
+<td align="center">11</td>
+<td align="left">台南市</td>
+<td align="left">北區</td>
+<td align="left">M</td>
+<td align="left">60-64</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>114</td>
+<td align="center">2006</td>
+<td align="center">10</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">M</td>
+<td align="left">5-9</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td>115</td>
+<td align="center">2006</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">M</td>
+<td align="left">60-64</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td>119</td>
+<td align="center">2006</td>
+<td align="center">12</td>
+<td align="left">南投縣</td>
+<td align="left">名間鄉</td>
+<td align="left">M</td>
+<td align="left">40-44</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>120</td>
+<td align="center">2006</td>
+<td align="center">12</td>
+<td align="left">高雄市</td>
+<td align="left">前鎮區</td>
+<td align="left">M</td>
+<td align="left">70+</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>121</td>
+<td align="center">2006</td>
+<td align="center">12</td>
+<td align="left">高雄市</td>
+<td align="left">苓雅區</td>
+<td align="left">M</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>126</td>
+<td align="center">2006</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">湖內區</td>
+<td align="left">M</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>129</td>
+<td align="center">2006</td>
+<td align="center">9</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">M</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>130</td>
+<td align="center">2006</td>
+<td align="center">9</td>
+<td align="left">高雄市</td>
+<td align="left">左營區</td>
+<td align="left">M</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>131</td>
+<td align="center">2006</td>
+<td align="center">9</td>
+<td align="left">高雄市</td>
+<td align="left">前鎮區</td>
+<td align="left">M</td>
+<td align="left">60-64</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>135</td>
+<td align="center">2007</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">南區</td>
+<td align="left">M</td>
+<td align="left">45-49</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td>136</td>
+<td align="center">2007</td>
+<td align="center">11</td>
+<td align="left">台南市</td>
+<td align="left">永康區</td>
+<td align="left">M</td>
+<td align="left">35-39</td>
+<td align="center">3</td>
+</tr>
+<tr class="odd">
+<td>137</td>
+<td align="center">2007</td>
+<td align="center">11</td>
+<td align="left">屏東縣</td>
+<td align="left">崁頂鄉</td>
+<td align="left">M</td>
+<td align="left">40-44</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>138</td>
+<td align="center">2007</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">苓雅區</td>
+<td align="left">M</td>
+<td align="left">55-59</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>139</td>
+<td align="center">2007</td>
+<td align="center">12</td>
+<td align="left">台北市</td>
+<td align="left">內湖區</td>
+<td align="left">M</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>144</td>
+<td align="center">2007</td>
+<td align="center">12</td>
+<td align="left">台南市</td>
+<td align="left">東區</td>
+<td align="left">M</td>
+<td align="left">5-9</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>146</td>
+<td align="center">2007</td>
+<td align="center">4</td>
+<td align="left">台南市</td>
+<td align="left">麻豆區</td>
+<td align="left">M</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>149</td>
+<td align="center">2007</td>
+<td align="center">7</td>
+<td align="left">高雄市</td>
+<td align="left">左營區</td>
+<td align="left">M</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>150</td>
+<td align="center">2007</td>
+<td align="center">8</td>
+<td align="left">台南市</td>
+<td align="left">永康區</td>
+<td align="left">M</td>
+<td align="left">65-69</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>154</td>
+<td align="center">2008</td>
+<td align="center">11</td>
+<td align="left">台北市</td>
+<td align="left">信義區</td>
+<td align="left">M</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>155</td>
+<td align="center">2008</td>
+<td align="center">11</td>
+<td align="left">桃園市</td>
+<td align="left">大園區</td>
+<td align="left">M</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>156</td>
+<td align="center">2008</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">苓雅區</td>
+<td align="left">M</td>
+<td align="left">20-24</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>158</td>
+<td align="center">2008</td>
+<td align="center">12</td>
+<td align="left">台中市</td>
+<td align="left">大肚區</td>
+<td align="left">M</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>162</td>
+<td align="center">2008</td>
+<td align="center">6</td>
+<td align="left">台南市</td>
+<td align="left">佳里區</td>
+<td align="left">M</td>
+<td align="left">60-64</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>163</td>
+<td align="center">2008</td>
+<td align="center">7</td>
+<td align="left">南投縣</td>
+<td align="left">名間鄉</td>
+<td align="left">M</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>164</td>
+<td align="center">2008</td>
+<td align="center">7</td>
+<td align="left">高雄市</td>
+<td align="left">楠梓區</td>
+<td align="left">M</td>
+<td align="left">55-59</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>165</td>
+<td align="center">2008</td>
+<td align="center">7</td>
+<td align="left">新北市</td>
+<td align="left">永和區</td>
+<td align="left">M</td>
+<td align="left">55-59</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>168</td>
+<td align="center">2008</td>
+<td align="center">9</td>
+<td align="left">新北市</td>
+<td align="left">林口區</td>
+<td align="left">M</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>171</td>
+<td align="center">2009</td>
+<td align="center">10</td>
+<td align="left">高雄市</td>
+<td align="left">旗津區</td>
+<td align="left">M</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>172</td>
+<td align="center">2009</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">M</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>173</td>
+<td align="center">2009</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">前鎮區</td>
+<td align="left">M</td>
+<td align="left">45-49</td>
+<td align="center">5</td>
+</tr>
+<tr class="even">
+<td>178</td>
+<td align="center">2009</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">小港區</td>
+<td align="left">M</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>179</td>
+<td align="center">2009</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">小港區</td>
+<td align="left">M</td>
+<td align="left">5-9</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td>183</td>
+<td align="center">2010</td>
+<td align="center">10</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">M</td>
+<td align="left">55-59</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>184</td>
+<td align="center">2010</td>
+<td align="center">11</td>
+<td align="left">台南市</td>
+<td align="left">南區</td>
+<td align="left">M</td>
+<td align="left">60-64</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>185</td>
+<td align="center">2010</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">前鎮區</td>
+<td align="left">M</td>
+<td align="left">65-69</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>189</td>
+<td align="center">2010</td>
+<td align="center">12</td>
+<td align="left">台中市</td>
+<td align="left">沙鹿區</td>
+<td align="left">M</td>
+<td align="left">60-64</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>190</td>
+<td align="center">2010</td>
+<td align="center">12</td>
+<td align="left">宜蘭縣</td>
+<td align="left">員山鄉</td>
+<td align="left">M</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>191</td>
+<td align="center">2010</td>
+<td align="center">12</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">M</td>
+<td align="left">70+</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td>193</td>
+<td align="center">2010</td>
+<td align="center">3</td>
+<td align="left">彰化縣</td>
+<td align="left">和美鎮</td>
+<td align="left">M</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>knitr::kable(head(a,100))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="center">發病年份</th>
+<th align="center">發病月份</th>
+<th align="left">縣市</th>
+<th align="left">鄉鎮</th>
+<th align="left">女生</th>
+<th align="left">年齡層</th>
+<th align="center">確定病例數.x</th>
+<th align="left">男生</th>
+<th align="center">確定病例數.y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">2003</td>
+<td align="center">12</td>
+<td align="left">新北市</td>
+<td align="left">三重區</td>
+<td align="left">F</td>
+<td align="left">40-44</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2004</td>
+<td align="center">11</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">60-64</td>
+<td align="center">4</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">2004</td>
+<td align="center">2</td>
+<td align="left">基隆市</td>
+<td align="left">信義區</td>
+<td align="left">F</td>
+<td align="left">20-24</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2004</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">鳳山區</td>
+<td align="left">F</td>
+<td align="left">15-19</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2004</td>
+<td align="center">9</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">5</td>
+</tr>
+<tr class="even">
+<td align="center">2004</td>
+<td align="center">9</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">50-54</td>
+<td align="center">2</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2004</td>
+<td align="center">9</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">65-69</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">2005</td>
+<td align="center">12</td>
+<td align="left">台北市</td>
+<td align="left">信義區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2006</td>
+<td align="center">10</td>
+<td align="left">高雄市</td>
+<td align="left">前鎮區</td>
+<td align="left">F</td>
+<td align="left">50-54</td>
+<td align="center">4</td>
+<td align="left">M</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center">2006</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">F</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2006</td>
+<td align="center">7</td>
+<td align="left">台北市</td>
+<td align="left">大安區</td>
+<td align="left">F</td>
+<td align="left">55-59</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2006</td>
+<td align="center">8</td>
+<td align="left">桃園市</td>
+<td align="left">八德區</td>
+<td align="left">F</td>
+<td align="left">40-44</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2006</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">前鎮區</td>
+<td align="left">F</td>
+<td align="left">60-64</td>
+<td align="center">5</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">2006</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">新興區</td>
+<td align="left">F</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2006</td>
+<td align="center">9</td>
+<td align="left">高雄市</td>
+<td align="left">苓雅區</td>
+<td align="left">F</td>
+<td align="left">70+</td>
+<td align="center">2</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">2006</td>
+<td align="center">9</td>
+<td align="left">高雄市</td>
+<td align="left">鳥松區</td>
+<td align="left">F</td>
+<td align="left">60-64</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2007</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">南區</td>
+<td align="left">F</td>
+<td align="left">10-14</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2007</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">關廟區</td>
+<td align="left">F</td>
+<td align="left">65-69</td>
+<td align="center">2</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2007</td>
+<td align="center">11</td>
+<td align="left">台南市</td>
+<td align="left">安南區</td>
+<td align="left">F</td>
+<td align="left">65-69</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">2007</td>
+<td align="center">7</td>
+<td align="left">台南市</td>
+<td align="left">永康區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">2007</td>
+<td align="center">7</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">F</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2007</td>
+<td align="center">9</td>
+<td align="left">台南市</td>
+<td align="left">東區</td>
+<td align="left">F</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">2008</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">苓雅區</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center">2008</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">鼓山區</td>
+<td align="left">F</td>
+<td align="left">15-19</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">2008</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">鼓山區</td>
+<td align="left">F</td>
+<td align="left">70+</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2009</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">永康區</td>
+<td align="left">F</td>
+<td align="left">55-59</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2009</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">F</td>
+<td align="left">20-24</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">2009</td>
+<td align="center">12</td>
+<td align="left">台北市</td>
+<td align="left">信義區</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2009</td>
+<td align="center">3</td>
+<td align="left">台北市</td>
+<td align="left">中正區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2009</td>
+<td align="center">4</td>
+<td align="left">嘉義縣</td>
+<td align="left">新港鄉</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2009</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">小港區</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">5</td>
+</tr>
+<tr class="even">
+<td align="center">2009</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">小港區</td>
+<td align="left">F</td>
+<td align="left">55-59</td>
+<td align="center">2</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2010</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">中西區</td>
+<td align="left">F</td>
+<td align="left">15-19</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center">2010</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">東區</td>
+<td align="left">F</td>
+<td align="left">40-44</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">2010</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">關廟區</td>
+<td align="left">F</td>
+<td align="left">55-59</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2010</td>
+<td align="center">10</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">F</td>
+<td align="left">5-9</td>
+<td align="center">2</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">2010</td>
+<td align="center">10</td>
+<td align="left">高雄市</td>
+<td align="left">苓雅區</td>
+<td align="left">F</td>
+<td align="left">60-64</td>
+<td align="center">3</td>
+<td align="left">M</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">2010</td>
+<td align="center">11</td>
+<td align="left">台南市</td>
+<td align="left">安南區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2010</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">F</td>
+<td align="left">15-19</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="center">2010</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">左營區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2010</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">前鎮區</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">2010</td>
+<td align="center">12</td>
+<td align="left">高雄市</td>
+<td align="left">前鎮區</td>
+<td align="left">F</td>
+<td align="left">70+</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">4</td>
+</tr>
+<tr class="odd">
+<td align="center">2010</td>
+<td align="center">12</td>
+<td align="left">高雄市</td>
+<td align="left">苓雅區</td>
+<td align="left">F</td>
+<td align="left">50-54</td>
+<td align="center">2</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2010</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">鼓山區</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">2</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">2010</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">鼓山區</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">2</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">2010</td>
+<td align="center">9</td>
+<td align="left">台中市</td>
+<td align="left">潭子區</td>
+<td align="left">F</td>
+<td align="left">40-44</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2010</td>
+<td align="center">9</td>
+<td align="left">高雄市</td>
+<td align="left">新興區</td>
+<td align="left">F</td>
+<td align="left">65-69</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2004</td>
+<td align="center">11</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">4</td>
+<td align="left">M</td>
+<td align="center">4</td>
+</tr>
+<tr class="odd">
+<td align="center">2004</td>
+<td align="center">8</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2005</td>
+<td align="center">10</td>
+<td align="left">台北市</td>
+<td align="left">北投區</td>
+<td align="left">F</td>
+<td align="left">15-19</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2005</td>
+<td align="center">7</td>
+<td align="left">苗栗縣</td>
+<td align="left">南庄鄉</td>
+<td align="left">F</td>
+<td align="left">5-9</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2005</td>
+<td align="center">7</td>
+<td align="left">桃園市</td>
+<td align="left">中壢區</td>
+<td align="left">F</td>
+<td align="left">1</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2006</td>
+<td align="center">10</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">F</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2006</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">小港區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">4</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">2006</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">前鎮區</td>
+<td align="left">F</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="center">2006</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">鳳山區</td>
+<td align="left">F</td>
+<td align="left">55-59</td>
+<td align="center">2</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2006</td>
+<td align="center">12</td>
+<td align="left">新北市</td>
+<td align="left">萬里區</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2006</td>
+<td align="center">7</td>
+<td align="left">高雄市</td>
+<td align="left">新興區</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2006</td>
+<td align="center">8</td>
+<td align="left">桃園市</td>
+<td align="left">楊梅區</td>
+<td align="left">F</td>
+<td align="left">20-24</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2006</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">前鎮區</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">2006</td>
+<td align="center">8</td>
+<td align="left">高雄市</td>
+<td align="left">鳳山區</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">2</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">2006</td>
+<td align="center">9</td>
+<td align="left">桃園市</td>
+<td align="left">八德區</td>
+<td align="left">F</td>
+<td align="left">50-54</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2006</td>
+<td align="center">9</td>
+<td align="left">高雄市</td>
+<td align="left">楠梓區</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2007</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">北區</td>
+<td align="left">F</td>
+<td align="left">60-64</td>
+<td align="center">11</td>
+<td align="left">M</td>
+<td align="center">12</td>
+</tr>
+<tr class="odd">
+<td align="center">2007</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">永康區</td>
+<td align="left">F</td>
+<td align="left">20-24</td>
+<td align="center">4</td>
+<td align="left">M</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">2007</td>
+<td align="center">12</td>
+<td align="left">台北市</td>
+<td align="left">文山區</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2007</td>
+<td align="center">12</td>
+<td align="left">台南市</td>
+<td align="left">北區</td>
+<td align="left">F</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">2007</td>
+<td align="center">12</td>
+<td align="left">台南市</td>
+<td align="left">安平區</td>
+<td align="left">F</td>
+<td align="left">40-44</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">2007</td>
+<td align="center">12</td>
+<td align="left">台南市</td>
+<td align="left">東區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">2</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">2007</td>
+<td align="center">4</td>
+<td align="left">台南市</td>
+<td align="left">安定區</td>
+<td align="left">F</td>
+<td align="left">40-44</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2007</td>
+<td align="center">7</td>
+<td align="left">台南市</td>
+<td align="left">東區</td>
+<td align="left">F</td>
+<td align="left">15-19</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">2007</td>
+<td align="center">7</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">F</td>
+<td align="left">65-69</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">2007</td>
+<td align="center">9</td>
+<td align="left">台南市</td>
+<td align="left">安平區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2007</td>
+<td align="center">9</td>
+<td align="left">新北市</td>
+<td align="left">樹林區</td>
+<td align="left">F</td>
+<td align="left">20-24</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2008</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">東區</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2008</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">鳳山區</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">2008</td>
+<td align="center">12</td>
+<td align="left">台北市</td>
+<td align="left">中山區</td>
+<td align="left">F</td>
+<td align="left">70+</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2008</td>
+<td align="center">2</td>
+<td align="left">台中市</td>
+<td align="left">豐原區</td>
+<td align="left">F</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2008</td>
+<td align="center">4</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">F</td>
+<td align="left">55-59</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2008</td>
+<td align="center">8</td>
+<td align="left">台北市</td>
+<td align="left">士林區</td>
+<td align="left">F</td>
+<td align="left">55-59</td>
+<td align="center">2</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">2008</td>
+<td align="center">8</td>
+<td align="left">新北市</td>
+<td align="left">深坑區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2009</td>
+<td align="center">10</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">55-59</td>
+<td align="center">2</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2009</td>
+<td align="center">10</td>
+<td align="left">高雄市</td>
+<td align="left">小港區</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2009</td>
+<td align="center">12</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">2</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2009</td>
+<td align="center">12</td>
+<td align="left">高雄市</td>
+<td align="left">三民區</td>
+<td align="left">F</td>
+<td align="left">20-24</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">2009</td>
+<td align="center">2</td>
+<td align="left">桃園市</td>
+<td align="left">中壢區</td>
+<td align="left">F</td>
+<td align="left">65-69</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2009</td>
+<td align="center">4</td>
+<td align="left">屏東縣</td>
+<td align="left">竹田鄉</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2010</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">北區</td>
+<td align="left">F</td>
+<td align="left">65-69</td>
+<td align="center">3</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">2010</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">東區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">2</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2010</td>
+<td align="center">10</td>
+<td align="left">台南市</td>
+<td align="left">東區</td>
+<td align="left">F</td>
+<td align="left">60-64</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2010</td>
+<td align="center">11</td>
+<td align="left">高雄市</td>
+<td align="left">鼓山區</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">2</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">2010</td>
+<td align="center">11</td>
+<td align="left">新北市</td>
+<td align="left">樹林區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">2010</td>
+<td align="center">12</td>
+<td align="left">台中市</td>
+<td align="left">沙鹿區</td>
+<td align="left">F</td>
+<td align="left">25-29</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2010</td>
+<td align="center">12</td>
+<td align="left">高雄市</td>
+<td align="left">苓雅區</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2010</td>
+<td align="center">6</td>
+<td align="left">彰化縣</td>
+<td align="left">二林鎮</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2003</td>
+<td align="center">9</td>
+<td align="left">新北市</td>
+<td align="left">中和區</td>
+<td align="left">F</td>
+<td align="left">45-49</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2004</td>
+<td align="center">10</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">60-64</td>
+<td align="center">7</td>
+<td align="left">M</td>
+<td align="center">6</td>
+</tr>
+<tr class="even">
+<td align="center">2004</td>
+<td align="center">11</td>
+<td align="left">台北市</td>
+<td align="left">大同區</td>
+<td align="left">F</td>
+<td align="left">35-39</td>
+<td align="center">1</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">2004</td>
+<td align="center">11</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">40-44</td>
+<td align="center">4</td>
+<td align="left">M</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="center">2004</td>
+<td align="center">7</td>
+<td align="left">屏東縣</td>
+<td align="left">屏東市</td>
+<td align="left">F</td>
+<td align="left">30-34</td>
+<td align="center">1</td>
+<td align="left">M</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section level2">
 <h2>探索式資料分析</h2>
@@ -183,9 +3328,15 @@ a&lt;-full_join(Age_County_Gender_061FR,Age_County_Gender_061MR,by=c(&quot;發�
 library(dplyr)
 library(reshape2)</code></pre>
 <pre><code>## Warning: package 'reshape2' was built under R version 3.3.3</code></pre>
-<pre class="r"><code>#group_by(Age_County_Gender_061,.dots=縣市) %&gt;%
-#  summarise(病例=sum(確定病例數)) %&gt;%
-#  arrange(desc(病例))
+<pre class="r"><code>b&lt;-group_by(Age_County_Gender_061NA,.dots=發病月份) %&gt;%
+  summarise(病例=sum(確定病例數)) %&gt;%
+  arrange(desc(病例))
+
+c&lt;-group_by(Age_County_Gender_061NA,.dots=縣市) %&gt;%
+ summarise(病例=sum(確定病例數)) %&gt;%
+ arrange(desc(病例))
+
+
 group_by(a,.dots=縣市) %&gt;%
   summarise(女生病例=sum(確定病例數.x,na.rm=T),男生病例=sum(確定病例數.y,na.rm=T)) %&gt;%
   arrange(desc(女生病例),desc(男生病例))</code></pre>
@@ -204,15 +3355,18 @@ group_by(a,.dots=縣市) %&gt;%
 ## 10 新竹縣       54       60
 ## # ... with 12 more rows</code></pre>
 <pre class="r"><code>#Age_County_Gender_061NA.m&lt;-melt(Age_County_Gender_061NA,id.vars = c(&quot;發病年份&quot;,&quot;發病月份&quot;))
-#1.併發的月份在哪一月多
 
-#2.各區域男女染登革熱的人數
-
-#3.境外移入是站的比例多嗎</code></pre>
-</div>
-<div class="section level2">
-<h2>期末專題分析規劃</h2>
-<p>透過資料的分析了解在台灣登革熱的發生區域，進而我們還可以了解醫療資源的分配和一些疾病的預防。 之後還會再從資料中分析出台灣常見的疾病，還有地區、氣候跟疾病的關係。</p>
+library(datasets) 
+library(dplyr)
+#install.packages(&quot;ggplot2&quot;)
+library(ggplot2)</code></pre>
+<pre><code>## Warning: package 'ggplot2' was built under R version 3.3.3</code></pre>
+<pre class="r"><code>ggplot()+geom_bar(data=b,aes(x= .dots,y= 病例),
+                  stat = &quot;identity&quot;)+xlab(&quot;月份&quot;)</code></pre>
+<p><img src="data:image/png;base64,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" width="672" /></p>
+<pre class="r"><code>ggplot()+geom_bar(data=c,aes(x= .dots,y= 病例),
+                  stat = &quot;identity&quot;)+xlab(&quot;縣市&quot;)</code></pre>
+<p><img src="data:image/png;base64,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" width="672" /> ## 期末專題分析規劃 透過資料的分析了解在台灣登革熱的發生區域，進而我們還可以了解醫療資源的分配和一些疾病的預防。 之後還會再從資料中分析出台灣常見的疾病，還有地區、氣候跟疾病的關係。</p>
 </div>
 
 

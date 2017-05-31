@@ -1,22 +1,13 @@
 <<<<<<< HEAD
 ---
-title: 林昱珊 許凱晶 台灣地區登革熱分析
+title: 台灣各地區登革熱分析
 output: github_document
 ---
 
 
-## 作業說明 （繳交時請直接刪除這個章節）
 
-作業目的：期末專題暖身
-
-依下列指示，完成期末分析專題作業規劃：
-
-- 訂出分析問題，並將R Markdown的一級標題(第一行的title:)中的"長庚大學 大數據分析方法 作業六"取代為期末專題的分析問題，並在分析議題背景前加上組員姓名 (`10pt`)
-- 分析議題背景 (`10pt`) 與動機 (`10pt`)
-- 資料說明 (`10pt`) 與 載入 (`10pt`)
-- 資料處理與清洗 (`10pt`) 說明 (`10pt`)
-- 對資料們進行探索式資料分析，圖文並茂佳!(`20pt`)
-- 期末專題分析規劃與假設 (`10pt`)
+## 組員姓名
+林昱珊 許凱晶
 
 ## 分析議題背景
 登革熱（Dengue fever），是一種由登革病毒所引起的急性傳染病，這種病毒會經由蚊子傳播給人類。並且依據不同的血清型病毒，分為Ⅰ、Ⅱ、Ⅲ、Ⅳ四種型別，而每一型都具有能感染致病的能力。
@@ -33,13 +24,14 @@ output: github_document
 ```{r}
 #這是R Code Chunk
 library(readr)
-Age_County_Gender_061 <- read.csv("C:/Users/user/Downloads/Age_County_Gender_061.csv",fileEncoding = "big5")
-#Age_County_Gender_061 <- read.csv("~/GitHub/b0344139_hw6/Age_County_Gender_061.csv",fileEncoding = "big5")
+#Age_County_Gender_061 <- read.csv("C:/Users/user/Downloads/Age_County_Gender_061.csv",fileEncoding = "big5")
+Age_County_Gender_061 <- read.csv("~/GitHub/b0344139_hw6/Age_County_Gender_061.csv",fileEncoding = "big5")
 ```
 
 ## 資料處理與清洗
 1.檢查資料裡是否有空值
 2.把男生女生個別篩選出來
+
 處理資料
 ```{r}
 #這是R Code Chunk
@@ -52,6 +44,10 @@ Age_County_Gender_061M<-Age_County_Gender_061[grepl("M",Age_County_Gender_061$�
 Age_County_Gender_061MR<-select(Age_County_Gender_061M,發病年份:確定病例數,-是否為境外移入)
 Age_County_Gender_061MR<-rename(Age_County_Gender_061MR,男生=性別)
 a<-full_join(Age_County_Gender_061FR,Age_County_Gender_061MR,by=c("發病年份","發病月份","縣市","鄉鎮","年齡層"))
+
+knitr::kable(head(Age_County_Gender_061FR,100))
+knitr::kable(head(Age_County_Gender_061MR,100))
+knitr::kable(head(a,100))
 ```
 
 ## 探索式資料分析
@@ -60,18 +56,29 @@ a<-full_join(Age_County_Gender_061FR,Age_County_Gender_061MR,by=c("發病年份"
 #這是R Code Chunk
 library(dplyr)
 library(reshape2)
-#group_by(Age_County_Gender_061,.dots=縣市) %>%
-#  summarise(病例=sum(確定病例數)) %>%
-#  arrange(desc(病例))
+b<-group_by(Age_County_Gender_061NA,.dots=發病月份) %>%
+  summarise(病例=sum(確定病例數)) %>%
+  arrange(desc(病例))
+
+c<-group_by(Age_County_Gender_061NA,.dots=縣市) %>%
+ summarise(病例=sum(確定病例數)) %>%
+ arrange(desc(病例))
+
+
 group_by(a,.dots=縣市) %>%
   summarise(女生病例=sum(確定病例數.x,na.rm=T),男生病例=sum(確定病例數.y,na.rm=T)) %>%
   arrange(desc(女生病例),desc(男生病例))
 #Age_County_Gender_061NA.m<-melt(Age_County_Gender_061NA,id.vars = c("發病年份","發病月份"))
-#1.併發的月份在哪一月多
 
-#2.各區域男女染登革熱的人數
+library(datasets) 
+library(dplyr)
+#install.packages("ggplot2")
+library(ggplot2)
+ggplot()+geom_bar(data=b,aes(x= .dots,y= 病例),
+                  stat = "identity")+xlab("月份")
 
-#3.境外移入是站的比例多嗎
+ggplot()+geom_bar(data=c,aes(x= .dots,y= 病例),
+                  stat = "identity")+xlab("縣市")
 
 ```
 ## 期末專題分析規劃
