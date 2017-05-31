@@ -36,18 +36,19 @@ Age_County_Gender_061 <- read.csv("~/GitHub/b0344139_hw6/Age_County_Gender_061.c
 ```{r}
 #這是R Code Chunk
 library(dplyr)
-Age_County_Gender_061NA<-Age_County_Gender_061[complete.cases(Age_County_Gender_061),]
 Age_County_Gender_061F<-Age_County_Gender_061[grepl("F",Age_County_Gender_061$性別),]
-Age_County_Gender_061FR<-select(Age_County_Gender_061F,發病年份:確定病例數,-是否為境外移入)
-Age_County_Gender_061FR<-rename(Age_County_Gender_061FR,女生=性別)
+Age_County_Gender_061F<-select(Age_County_Gender_061F,發病年份:確定病例數,-是否為境外移入)
+Age_County_Gender_061F<-rename(Age_County_Gender_061F,女生=性別)
 Age_County_Gender_061M<-Age_County_Gender_061[grepl("M",Age_County_Gender_061$性別),]
-Age_County_Gender_061MR<-select(Age_County_Gender_061M,發病年份:確定病例數,-是否為境外移入)
-Age_County_Gender_061MR<-rename(Age_County_Gender_061MR,男生=性別)
-a<-full_join(Age_County_Gender_061FR,Age_County_Gender_061MR,by=c("發病年份","發病月份","縣市","鄉鎮","年齡層"))
+Age_County_Gender_061M<-select(Age_County_Gender_061M,發病年份:確定病例數,-是否為境外移入)
+Age_County_Gender_061M<-rename(Age_County_Gender_061M,男生=性別)
+a<-full_join(Age_County_Gender_061F,Age_County_Gender_061M,by=c("發病年份","發病月份","縣市","鄉鎮","年齡層"))
 
-knitr::kable(head(Age_County_Gender_061FR,100))
-knitr::kable(head(Age_County_Gender_061MR,100))
-knitr::kable(head(a,100))
+knitr::kable(head(Age_County_Gender_061F,50))
+knitr::kable(head(Age_County_Gender_061M,50))
+knitr::kable(head(a,50))
+
+
 ```
 
 ## 探索式資料分析
@@ -56,11 +57,11 @@ knitr::kable(head(a,100))
 #這是R Code Chunk
 library(dplyr)
 library(reshape2)
-b<-group_by(Age_County_Gender_061NA,.dots=發病月份) %>%
+b<-group_by(Age_County_Gender_061,.dots=發病月份) %>%
   summarise(病例=sum(確定病例數)) %>%
   arrange(desc(病例))
 
-c<-group_by(Age_County_Gender_061NA,.dots=縣市) %>%
+c<-group_by(Age_County_Gender_061,.dots=縣市) %>%
  summarise(病例=sum(確定病例數)) %>%
  arrange(desc(病例))
 
@@ -68,7 +69,6 @@ c<-group_by(Age_County_Gender_061NA,.dots=縣市) %>%
 group_by(a,.dots=縣市) %>%
   summarise(女生病例=sum(確定病例數.x,na.rm=T),男生病例=sum(確定病例數.y,na.rm=T)) %>%
   arrange(desc(女生病例),desc(男生病例))
-#Age_County_Gender_061NA.m<-melt(Age_County_Gender_061NA,id.vars = c("發病年份","發病月份"))
 
 library(datasets) 
 library(dplyr)
